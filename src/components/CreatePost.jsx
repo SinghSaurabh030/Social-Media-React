@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { Profile } from '../store/Profile';
 
 export default function CreatePost(){
-    let {data,setData}=useContext(Profile);
+    let {data,add,del}=useContext(Profile);
     let [name,setName]=useState("");
     let [abt,setabt]=useState("");
     function HandleOnSubmit(event){
@@ -13,24 +13,26 @@ export default function CreatePost(){
         }
         setName(""),
         setabt("");
-        setData((obj)=>[...obj,dummydata]);
+        add(dummydata);
     }
     return (
-        <form onSubmit={HandleOnSubmit}>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={name} onChange={(e)=>setName(e.target.value)}/>
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        <form onSubmit={HandleOnSubmit} className="formD">
+  <div className="mb-3">
+    <label for="exampleInputEmail1" className="form-label">Name</label>
+    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={name} onChange={(e)=>setName(e.target.value)}/>
+   
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="text" class="form-control" id="exampleInputPassword1"value={abt} onChange={(e)=>setabt(e.target.value)}/>
+  <div className="mb-3">
+    <label for="exampleInputPassword1" className="form-label">About</label>
+    <input type="text" className="form-control" id="exampleInputPassword1"value={abt} onChange={(e)=>setabt(e.target.value)}/>
   </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  <div id="emailHelp" className="form-text">We'll never share your Details with anyone else.</div>
+  <div className="mb-3 form-check">
+    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
+    <label className="form-check-label" for="exampleCheck1">Check me out</label>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  
+  <button type="submit" className="btn btn-primary">Submit</button>
 </form>
     );
 }

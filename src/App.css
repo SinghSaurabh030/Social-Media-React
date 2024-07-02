@@ -3,5 +3,28 @@
   height: 900px;
 }
 .sider{
-  height: 500px;
+  height: 700px;
+}
+.foot{
+
+  margin-bottom: 0;
+}
+.card{
+  margin: 2rem;
+}
+.List{
+  display: flex;
+  flex-wrap: wrap;
+}
+.container{
+  width: 100%;
+}
+.cont{
+  width: 100%;
+}
+.formD{
+  margin: 4rem;
+  padding: 2rem;
+  border: 1px solid black;
+  border-radius: 2rem;
 }

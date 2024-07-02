@@ -1,40 +1,32 @@
-import './App.css'
+
 import 'bootstrap/dist/css/bootstrap.css';
+
 import Header from './components/header';
 import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
 import PostList from './components/PostList';
 import CreatePost from './components/CreatePost';
 import { useState } from 'react';
-import { Profile } from './store/Profile';
+import ProfileProvider from './store/Profile';
+import './App.css'
 
 function App() {
   let [selectedTab,setSelectedTab]=useState("Home");
-  let [data,setData]=useState([{
-    name:"Saurabh",
-    about:"3rd Year Student"
-  }]);
 
   return (
     <>
-    <Profile.Provider value={
-      {
-        data,
-      setData
-    }
-    }>
+    <ProfileProvider>
     <div className="contain">
     <div className="">
-    <Sidebar setSelectedTab={setSelectedTab}></Sidebar>
+    <Sidebar selectedTab={selectedTab} setSelectedTab={setSelectedTab}></Sidebar>
     </div>
-    <div className="container">
+    <div className="cont">
     <Header></Header>
     {selectedTab=="Home"?<PostList ></PostList>:selectedTab=="CreatePost"? <CreatePost></CreatePost>:""}
     <Footer></Footer>
     </div>
     </div>
-    </Profile.Provider>
-
+    </ProfileProvider>
     </>
   )
 }
