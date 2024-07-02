@@ -1,0 +1,7 @@
+.contain{
+  display: flex;
+  height: 900px;
+}
+.sider{
+  height: 500px;
+}
