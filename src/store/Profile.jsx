@@ -1,4 +1,4 @@
-import { createContext,useReducer,useState } from "react";
+import { createContext,useReducer,useEffect ,useState} from "react";
 
 export const Profile=createContext([
     {
@@ -24,7 +24,21 @@ function Reducer(currVal,action){
 }
 
  const ProfileProvider=({children})=>{
-
+    let [load,setLoad]=useState(false);
+    useEffect(()=>{
+        const controller=new AbortController();
+        const signal=controller.signal;
+        setLoad(true);
+        fetch('https://dummyjson.com/posts',{signal})
+        .then(res => res.json())
+        .then(obj=>{
+            ServerFetch(obj.posts);
+            setLoad(false);
+        });
+        // return ()=>{
+        //     controller.abort();
+        // }
+    },[]);
     let [data,dataDipatch]=useReducer(Reducer,[]);
     function add(obj){
         let packet={
@@ -56,6 +70,7 @@ function Reducer(currVal,action){
               data,
             add,
             del,
+            load,
             ServerFetch
           }
           }>

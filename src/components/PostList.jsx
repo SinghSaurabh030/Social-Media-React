@@ -5,22 +5,8 @@ import Welcome from "./Welcome";
 import Spinner from "./spinner";
 
 export default function PostList(){
-    let {data,ServerFetch}=useContext(Profile);
-    let [load,setLoad]=useState(false);
-    useEffect(()=>{
-        const controller=new AbortController();
-        const signal=controller.signal;
-        setLoad(true);
-        fetch('https://dummyjson.com/posts',{signal})
-        .then(res => res.json())
-        .then(obj=>{
-            ServerFetch(obj.posts);
-            setLoad(false);
-        });
-        // return ()=>{
-        //     controller.abort();
-        // }
-    },[]);
+    let {data,load}=useContext(Profile);
+
     return(
         <>
         {load && <Spinner/>}
