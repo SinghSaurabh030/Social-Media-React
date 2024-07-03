@@ -1,24 +1,31 @@
 import { createContext,useReducer,useState } from "react";
 
-export const Profile=createContext([]); 
+export const Profile=createContext([
+    {
+        data:[],
+        add:()=>{},
+        del:()=>{},
+        ServerFetch:()=>{}
+    }
+]); 
 function Reducer(currVal,action){
     let newData=[];
     if(action.type=="adder"){
-        newData=[...currVal,action.payload];
+        newData=[action.payload,...currVal];
     }
-    else{
-        let newArr=currVal.filter((ele)=>ele.name!=action.payload.name);
+    else if(action.type=="delter"){
+        let newArr=currVal.filter((ele)=>ele.title!=action.payload.title);
         newData=[...newArr];
+    }
+    else if(action.type=="add-several-post-from-server"){
+        newData=[...action.payload];
     }
     return newData;
 }
 
  const ProfileProvider=({children})=>{
 
-    let [data,dataDipatch]=useReducer(Reducer,[{
-      name:"Saurabh",
-      about:"3rd Year Student"
-    }]);
+    let [data,dataDipatch]=useReducer(Reducer,[]);
     function add(obj){
         let packet={
             type:"adder",
@@ -35,12 +42,21 @@ function Reducer(currVal,action){
         };
         dataDipatch(packet);
     }
+    function ServerFetch(posts){
+
+        let packet={
+            type:"add-several-post-from-server",
+            payload:posts
+        };
+        dataDipatch(packet);
+    }
     return (
         <Profile.Provider value={
             {
               data,
             add,
-            del
+            del,
+            ServerFetch
           }
           }>
             {children}

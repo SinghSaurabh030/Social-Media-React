@@ -7,10 +7,11 @@ export default function Post({itm}){
          del(itm);
     }
     return (
-        <div className="card" style={{width: "18rem"}}>
-  <div className="card-body">
-    <h5 className="card-title">{itm.name}</h5>
-    <p className="card-text">{itm.about}</p>
+        <div className="card" style={{width: "18rem"}} >
+          
+  <div className="card-body" >
+    <h5 className="card-title">{itm.title}</h5>
+    <p className="card-text">{itm.body}</p>
     <a href="#" className="btn btn-primary" onClick={handleDelete}>Delete</a>
   </div>
 </div>

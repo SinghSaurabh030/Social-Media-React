@@ -1,13 +1,14 @@
 .contain{
   display: flex;
-  height: 900px;
+  min-height: 100vh;
 }
 .sider{
-  height: 700px;
+  height: 100%;
 }
 .foot{
 
   margin-bottom: 0;
+  width: 100%;
 }
 .card{
   margin: 2rem;
@@ -17,14 +18,21 @@
   flex-wrap: wrap;
 }
 .container{
-  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  max-width: 100%;
 }
 .cont{
   width: 100%;
+  padding: 0px;
 }
 .formD{
   margin: 4rem;
   padding: 2rem;
   border: 1px solid black;
   border-radius: 2rem;
+}
+.welcome{
+  text-align: center;
+  margin: 2rem;
 }

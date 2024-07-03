@@ -8,8 +8,9 @@ export default function CreatePost(){
     let [abt,setabt]=useState("");
     function HandleOnSubmit(event){
         let dummydata={
-            name:`${name}`,
-            about:`${abt}`
+            title:`${name}`,
+            body:`${abt}`,
+            id:new Date()
         }
         setName(""),
         setabt("");
@@ -18,18 +19,18 @@ export default function CreatePost(){
     return (
         <form onSubmit={HandleOnSubmit} className="formD">
   <div className="mb-3">
-    <label for="exampleInputEmail1" className="form-label">Name</label>
-    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={name} onChange={(e)=>setName(e.target.value)}/>
+    <label htmlFor="exampleInputEmail1" className="form-label">Title</label>
+    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={name} onChange={(e)=>setName(e.target.value)}placeholder="Enter Title"/>
    
   </div>
   <div className="mb-3">
-    <label for="exampleInputPassword1" className="form-label">About</label>
-    <input type="text" className="form-control" id="exampleInputPassword1"value={abt} onChange={(e)=>setabt(e.target.value)}/>
+    <label htmlFor="exampleInputPassword1" className="form-label">Body</label>
+    <textarea type="textarea" rows="4"className="form-control" id="exampleInputPassword1"value={abt} onChange={(e)=>setabt(e.target.value)} placeholder="how are you feeling today..."/>
   </div>
   <div id="emailHelp" className="form-text">We'll never share your Details with anyone else.</div>
   <div className="mb-3 form-check">
     <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-    <label className="form-check-label" for="exampleCheck1">Check me out</label>
+    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
   </div>
   
   <button type="submit" className="btn btn-primary">Submit</button>
