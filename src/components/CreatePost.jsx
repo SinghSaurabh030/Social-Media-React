@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useContext } from "react";
 import { Profile } from '../store/Profile';
+import { useNavigate } from "react-router-dom";
 
 export default function CreatePost(){
     let {data,add,del}=useContext(Profile);
+    const navigate=useNavigate();
     let [name,setName]=useState("");
     let [abt,setabt]=useState("");
     let [userId,setuserId]=useState("");
     function HandleOnSubmit(event){
+      event.preventDefault();
         let dummydata={
             title:`${name}`,
             body:`${abt}`,
@@ -18,8 +21,21 @@ export default function CreatePost(){
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(dummydata)
         })
-        .then(res => res.json())
-        .then(obj=>add(obj));
+        .then(res =>{
+          
+          let ans=res.json();
+          return ans;
+        })
+        .then(obj=>{
+          add(obj);
+          setName("");
+          setabt("");
+          setuserId("");
+          navigate("/");
+          
+      });
+        
+
     }
   
 
