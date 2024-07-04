@@ -3,20 +3,27 @@ import { useContext, useEffect, useState } from "react";
 import { Profile } from '../store/Profile';
 import Welcome from "./Welcome";
 import Spinner from "./spinner";
+import { useLoaderData } from "react-router-dom";
 
 export default function PostList(){
-    let {data,load}=useContext(Profile);
+    let data=useLoaderData();
 
     return(
         <>
-        {load && <Spinner/>}
-        {!load && (data.length===0 && <Welcome />)}
+        {(data.length===0 && <Welcome />)}
         <div className="List">
-        {!load && data.map((itm)=>{
+        { data.map((itm)=>{
             return <Post itm={itm} key={itm.id}></Post>
         })}
         
         </div>
         </>
     );
+}
+export function Fetcher(){
+    return fetch('https://dummyjson.com/posts')
+        .then(res => res.json())
+        .then(obj=>{
+            return (obj.posts);
+        });
 }
